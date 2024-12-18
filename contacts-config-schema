@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["api", "requestBodySchema"],
+  "properties": {
+    "api": {
+      "type": "object",
+      "required": ["route", "handler", "port", "title", "description"],
+      "properties": {
+        "route": {
+          "type": "string",
+          "pattern": "^/[a-zA-Z0-9-/]*$",
+          "description": "API endpoint route starting with /"
+        },
+        "handler": {
+          "type": "string",
+          "description": "Name of the handler function"
+        },
+        "port": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65535,
+          "description": "Port number for the API"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Title of the API endpoint"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Description of the API endpoint"
+        }
+      },
+      "additionalProperties": false
+    },
+    "requestBodySchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "description": "Request body schema",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}
